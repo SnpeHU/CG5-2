@@ -1,0 +1,176 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8970923694168583554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69a8aba8d5386c047a769be0e4720b42, type: 3}
+  m_Name: ClippingCheckRenderFeature
+  m_EditorClassIdentifier: Assembly-CSharp::ClippingCheckRenderFeature
+  m_Active: 1
+  postEffectMaterial_: {fileID: 2100000, guid: 16104ee70a2e9de4fae6eba51b114901, type: 2}
+--- !u!114 &-7869143106600794673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd1c79f7a3a8d144eb484c422f3d3468, type: 3}
+  m_Name: BloomRenderFeature
+  m_EditorClassIdentifier: Assembly-CSharp::BloomRenderFeature
+  m_Active: 0
+  luminanceExtractMaterial: {fileID: 2100000, guid: d53aecc777586124c8d49bd8c51ca7dd, type: 2}
+  blurMaterial: {fileID: 2100000, guid: d45e5b7a3eeb212488e5e150f0bb9c2b, type: 2}
+  compositeMaterial: {fileID: 2100000, guid: 274528081033a384b84a19ca79de0bde, type: 2}
+--- !u!114 &-3231517331420450141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69a8aba8d5386c047a769be0e4720b42, type: 3}
+  m_Name: ClippingCheckRenderFeature
+  m_EditorClassIdentifier: Assembly-CSharp::ClippingCheckRenderFeature
+  m_Active: 1
+  postEffectMaterial_: {fileID: 2100000, guid: cb19b7bcc9b8cb84abbf2357cbeec716, type: 2}
+--- !u!114 &-2703644122755494857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f32b2417ffcdc94a871d28ae815042e, type: 3}
+  m_Name: PostEffectRenderFeature
+  m_EditorClassIdentifier: Assembly-CSharp::PostEffectRenderFeature
+  m_Active: 0
+  postEffectMaterial: {fileID: 2100000, guid: d53aecc777586124c8d49bd8c51ca7dd, type: 2}
+  passThroughMaterial: {fileID: 2100000, guid: d53aecc777586124c8d49bd8c51ca7dd, type: 2}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de640fe3d0db1804a85f9fc8f5cadab6, type: 3}
+  m_Name: PC_Renderer
+  m_EditorClassIdentifier: 
+  debugShaders:
+    debugReplacementPS: {fileID: 4800000, guid: cf852408f2e174538bcd9b7fda1c5ae7, type: 3}
+    hdrDebugViewPS: {fileID: 4800000, guid: 573620ae32aec764abd4d728906d2587, type: 3}
+    probeVolumeSamplingDebugComputeShader: {fileID: 7200000, guid: 53626a513ea68ce47b59dc1299fe3959, type: 3}
+  probeVolumeResources:
+    probeVolumeDebugShader: {fileID: 4800000, guid: e5c6678ed2aaa91408dd3df699057aae, type: 3}
+    probeVolumeFragmentationDebugShader: {fileID: 4800000, guid: 03cfc4915c15d504a9ed85ecc404e607, type: 3}
+    probeVolumeOffsetDebugShader: {fileID: 4800000, guid: 53a11f4ebaebf4049b3638ef78dc9664, type: 3}
+    probeVolumeSamplingDebugShader: {fileID: 4800000, guid: 8f96cd657dc40064aa21efcc7e50a2e7, type: 3}
+    probeSamplingDebugMesh: {fileID: -3555484719484374845, guid: 57d7c4c16e2765b47a4d2069b311bffe, type: 3}
+    probeSamplingDebugTexture: {fileID: 2800000, guid: 24ec0e140fb444a44ab96ee80844e18e, type: 3}
+    probeVolumeBlendStatesCS: {fileID: 7200000, guid: b9a23f869c4fd45f19c5ada54dd82176, type: 3}
+  m_RendererFeatures:
+  - {fileID: 7833122117494664109}
+  - {fileID: -2703644122755494857}
+  - {fileID: 7992156481286688855}
+  - {fileID: 6880045351475388585}
+  - {fileID: -3231517331420450141}
+  - {fileID: -8970923694168583554}
+  - {fileID: -7869143106600794673}
+  m_RendererFeatureMap: ad6b866f10d7b46c370c16b0feb97ada57d06db8f9d7e96ea9a0448dcbd47a5fa3722abf1b5827d37e52f21d6ee08083cf85587c0930cb92
+  m_UseNativeRenderPass: 1
+  xrSystemData: {fileID: 0}
+  postProcessData: {fileID: 0}
+  m_AssetVersion: 3
+  m_PrepassLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_OpaqueLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_TransparentLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_DefaultStencilState:
+    overrideStencilState: 0
+    stencilReference: 1
+    stencilCompareFunction: 3
+    passOperation: 2
+    failOperation: 0
+    zFailOperation: 0
+  m_ShadowTransparentReceive: 1
+  m_RenderingMode: 2
+  m_DepthPrimingMode: 0
+  m_CopyDepthMode: 0
+  m_DepthAttachmentFormat: 0
+  m_DepthTextureFormat: 0
+  m_AccurateGbufferNormals: 0
+  m_IntermediateTextureMode: 0
+--- !u!114 &6880045351475388585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0fd2bead3eaf5f4889b09ba8b02d657, type: 3}
+  m_Name: ToneMappingRenderFeature
+  m_EditorClassIdentifier: Assembly-CSharp::ToneMappingRenderFeature
+  m_Active: 1
+  ToneMappingMaterial: {fileID: 2100000, guid: d1b285ccbc2bcec40b7f6361ef62b3bb, type: 2}
+--- !u!114 &7833122117494664109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62c9c65cf3354c93be831c8bc075510, type: 3}
+  m_Name: ScreenSpaceAmbientOcclusion
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  m_Settings:
+    AOMethod: 0
+    Downsample: 0
+    AfterOpaque: 0
+    Source: 1
+    NormalSamples: 1
+    Intensity: 0.4
+    DirectLightingStrength: 0.25
+    Radius: 0.3
+    Samples: 1
+    BlurQuality: 0
+    Falloff: 100
+    SampleCount: -1
+--- !u!114 &7992156481286688855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0fd2bead3eaf5f4889b09ba8b02d657, type: 3}
+  m_Name: ToneMappingRenderFeature
+  m_EditorClassIdentifier: Assembly-CSharp::ToneMappingRenderFeature
+  m_Active: 1
+  ToneMappingMaterial: {fileID: 2100000, guid: 91786456c1e0182409a9016f229a46a9, type: 2}
