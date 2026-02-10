@@ -44,10 +44,12 @@ public class BloomRenderPass : ScriptableRenderPass
     {
         if(luminanceExtractMaterial == null || blurmaterial == null || compositeTextureMaterial == null)
         {
+            //
             base.RecordRenderGraph(renderGraph, frameData);
             return;
         }
 
+        //
         UniversalResourceData resourcesData = frameData.Get<UniversalResourceData>();
 
         //如果当前渲染目标是后备缓冲区，则不进行任何处理，直接调用基类的方法
@@ -83,12 +85,13 @@ public class BloomRenderPass : ScriptableRenderPass
         TextureHandle luminanceBlurTexture = renderGraph.CreateTexture(luminanceExtractDesc);
 
         RenderGraphUtils.BlitMaterialParameters luminanceExtractBlitParams = 
-        new RenderGraphUtils.BlitMaterialParameters()
-        {
-            source = cameraTexture,
-            destination = luminanceExtractTexture,
-            material = luminanceExtractMaterial
-        };
+        new RenderGraphUtils.BlitMaterialParameters(            
+            cameraTexture,
+            luminanceExtractTexture,
+            luminanceExtractMaterial,
+            0
+            );
+
 
         renderGraph.AddBlitPass(
             luminanceExtractBlitParams,
@@ -96,55 +99,65 @@ public class BloomRenderPass : ScriptableRenderPass
         );
 
         RenderGraphUtils.BlitMaterialParameters brightnessBlitParams =
-        new RenderGraphUtils.BlitMaterialParameters()
-        {
-            source = luminanceExtractTexture,
-            destination = luminanceBlurTexture,
-            material = blurmaterial
-        };
+        new RenderGraphUtils.BlitMaterialParameters(
+            luminanceExtractTexture, 
+            luminanceBlurTexture, 
+            blurmaterial,0
+            );
+
 
         renderGraph.AddBlitPass(
             brightnessBlitParams,
             "Brightness Blur Blit"
         );
 
-        using (IRasterRenderGraphBuilder builder = renderGraph.AddRasterRenderPass("Bloom Composite Pass", out CompositePassData passData))
-        {
-            //传入_BlitTexture的纹理
-            passData.sourceTexture = cameraTexture;
-            //传入辉度模糊后的纹理
-            passData.otherTexture = luminanceBlurTexture;
-            //输出到原始临时纹理
-            passData.destinationTexture = orignalTempTexture;
-            passData.material = compositeTextureMaterial;
+        using (IRasterRenderGraphBuilder builder = 
+            renderGraph.AddRasterRenderPass(
+                "Bloom Composite Pass",
+                out CompositePassData passData
+                )
+            )
+            {
+            //设置传入的参数
+                passData.sourceTexture = cameraTexture;
+                passData.otherTexture = luminanceBlurTexture;
+                passData.destinationTexture = orignalTempTexture;
+                passData.material = compositeTextureMaterial;
 
-            builder.UseTexture(passData.sourceTexture);
-            builder.UseTexture(passData.otherTexture);
+                builder.UseTexture(passData.sourceTexture);
+                builder.UseTexture(passData.otherTexture);
 
-            builder.SetRenderAttachment(
-                passData.destinationTexture, 
-                0
-            );
+                builder.SetRenderAttachment(
+                    passData.destinationTexture,
+                    0
+                    );
 
-            builder.SetRenderFunc(
-                (CompositePassData data, RasterGraphContext context) =>
+                builder.SetRenderFunc((
+                    CompositePassData data, 
+                    RasterGraphContext ctx
+                    )=>
                 {
-                    data.material.SetTexture(luminanceBlurTexID, data.otherTexture);
-                        Blitter.BlitTexture(
-                        context.cmd,
+                    data.material.SetTexture(
+                        luminanceBlurTexID,
+                        data.otherTexture
+                    );
+
+                    Blitter.BlitTexture(
+                        ctx.cmd,
                         data.sourceTexture,
-                        new Vector4(1, 1, 0, 0),
+                        new Vector4(1,1,0,0),
                         data.material,
                         0
                     );
+                        
                 });
-        }
+            }
 
-        renderGraph.AddCopyPass(
-            orignalTempTexture,
-            cameraTexture,
-            "Bloom Copy Pass"
-        );
+            renderGraph.AddCopyPass(
+                orignalTempTexture,
+                cameraTexture,
+                "Bloom Copy Pass"
+            );
 
     }
 

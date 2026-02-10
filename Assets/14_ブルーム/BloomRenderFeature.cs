@@ -13,6 +13,7 @@ public class BloomRenderFeature : ScriptableRendererFeature
 	public override void Create()
 	{
 		bloomRenderPass = new BloomRenderPass(luminanceExtractMaterial, blurMaterial, compositeMaterial);
+		//bloomRenderPass.renderPassEvent = RenderPassEvent.BeforeRenderingPostProcessing;
 	}	
 	public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
 	{
